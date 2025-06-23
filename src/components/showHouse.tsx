@@ -22,7 +22,7 @@ const ShowHouse: Component<HouseProps> = (props) => {
 			<p>Total house budget: ${totalBudget().toLocaleString()}</p>
 			<For each={props.house.rooms}>
 				{(room) => <div>
-					<p><input type="checkbox" checked={room.completed} onChange={() => toggle(room.id)} />{room.name}: {room.xDim}x{room.yDim}, ${room.budget.toLocaleString()}</p>
+					<label><p><input type="checkbox" checked={room.completed} onChange={() => toggle(room.id)} />{room.name}: {room.xDim}x{room.yDim}, ${room.budget.toLocaleString()}</p></label>
 				</div>}
 			</For>
 

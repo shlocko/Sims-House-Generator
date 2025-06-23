@@ -9,10 +9,7 @@ export const generateRoom = (rooms: room[], id: number, name?: roomName): room =
 		randName = name
 	} else {
 		randName = randomElement(roomNames)
-		while (Math.random() > (roomConfiguration.get(randName)?.frequencyConstant!) ** (rooms.length + 1)) {
-			randName = randomElement(roomNames)
-		}
-		while (roomCount(rooms, randName) >= roomConfiguration.get(randName)?.maxCount!) {
+		while (roomCount(rooms, randName) >= roomConfiguration.get(randName)?.maxCount! || Math.random() > (roomConfiguration.get(randName)?.frequencyConstant!) ** (roomCount(rooms, randName) + 1)) {
 			randName = randomElement(roomNames)
 		}
 	}

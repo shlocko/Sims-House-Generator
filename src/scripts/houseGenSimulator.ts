@@ -1,6 +1,9 @@
 import { generateHouse } from "./generateHouse";
 import { roomName, roomNames } from "./types"
 
+//
+// Simulates the generation of houses over many iterations to allow for the tuning of generation configuration
+//
 export const simulateHouseGen = (simCount: number, roomCount: number) => {
 	const roomAppearanceCount = new Map<roomName, number>();
 	for (const r of roomNames) {
