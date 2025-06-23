@@ -5,11 +5,11 @@ import { makePersisted } from "@solid-primitives/storage";
 const initialRoomConfiguration: Record<roomName, roomConfig> = {
 	"bedroom": {
 		minDim: 3, maxDim: 20, minCount: 1, maxCount: 999,
-		minBudget: 500, maxBudget: 20000, frequencyConstant: 1
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 5
 	},
 	"bathroom": {
 		minDim: 2, maxDim: 20, minCount: 1, maxCount: 999,
-		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.8
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 1.5
 	},
 	"kitchen": {
 		minDim: 2, maxDim: 20, minCount: 1, maxCount: 999,
