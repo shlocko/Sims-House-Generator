@@ -82,9 +82,72 @@ const initialRoomConfiguration: Record<roomName, roomConfig> = {
 	"garden": {
 		minDim: 2, maxDim: 20, minCount: 0, maxCount: 999,
 		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.6
-	}
+	},
+	"gym": {
+		minDim: 2, maxDim: 20, minCount: 0, maxCount: 999,
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.25
+	},
+	"dining room": {
+		minDim: 2, maxDim: 20, minCount: 0, maxCount: 999,
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.55
+	},
+	"home theatre": {
+		minDim: 2, maxDim: 20, minCount: 0, maxCount: 999,
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.1
+	},
+	"Bar": {
+		minDim: 2, maxDim: 20, minCount: 0, maxCount: 999,
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.25
+	},
+	"teen room": {
+		minDim: 2, maxDim: 20, minCount: 0, maxCount: 999,
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.4
+	},
+	"Child Room": {
+		minDim: 2, maxDim: 20, minCount: 0, maxCount: 999,
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.4
+	},
+	"Butler Room": {
+		minDim: 2, maxDim: 20, minCount: 0, maxCount: 1,
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.1
+	},
+	"Pantry": {
+		minDim: 2, maxDim: 20, minCount: 0, maxCount: 1,
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.55
+	},
+	"Crafts Room": {
+		minDim: 2, maxDim: 20, minCount: 0, maxCount: 999,
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.4
+	},
+	"Workshop": {
+		minDim: 2, maxDim: 20, minCount: 0, maxCount: 999,
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.4
+	},
+	"Outdoor Play Yard": {
+		minDim: 2, maxDim: 20, minCount: 0, maxCount: 1,
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.55
+	},
+	"meditation room": {
+		minDim: 2, maxDim: 20, minCount: 0, maxCount: 999,
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.1
+	},
+	"home business": {
+		minDim: 2, maxDim: 20, minCount: 0, maxCount: 999,
+		minBudget: 500, maxBudget: 20000, frequencyConstant: 0.25
+	},
 };
+
+export const initMissingRoomConfigs = () => {
+	console.log(initialRoomConfiguration)
+	Object.entries(initialRoomConfiguration).forEach(([name, conf]) => {
+		console.log(name)
+		if (!(name in roomConfiguration)) {
+			console.log(conf)
+			setRoomConfiguration(name, conf)
+		}
+	});
+}
 
 // Create a store from the object
 export const [roomConfiguration, setRoomConfiguration] =
-	makePersisted(createStore<Record<roomName, roomConfig>>(initialRoomConfiguration), { name: "persistedRoomConfiguration" });
+	makePersisted(createStore<Record<roomName, roomConfig>>(), { name: "persistedRoomConfiguration" });

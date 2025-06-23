@@ -1,5 +1,5 @@
 
-export const roomNames = ['bedroom', 'bathroom', 'kitchen', 'living room', 'hallway', 'garage', 'game room', 'office', 'laundry', 'pet room', 'mud room', 'walk in closet', 'deck/balcony/patio', 'pool', 'poolhouse', 'library', 'nursery', 'play room', 'shed', 'garden'];
+export const roomNames = ['bedroom', 'bathroom', 'kitchen', 'living room', 'hallway', 'garage', 'game room', 'office', 'laundry', 'pet room', 'mud room', 'walk in closet', 'deck/balcony/patio', 'pool', 'poolhouse', 'library', 'nursery', 'play room', 'shed', 'garden', 'gym', 'dining room', 'home theatre', 'Bar', 'teen room', 'Child Room', 'Butler Room', 'Pantry', 'Crafts Room', 'Workshop', 'Outdoor Play Yard', 'meditation room', 'home business'];
 export type roomName = (typeof roomNames)[number]
 
 export type room = {
