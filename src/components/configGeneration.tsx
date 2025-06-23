@@ -79,7 +79,7 @@ const ConfigGeneration: Component<configProps> = (props) => {
       </label><br />
       <label>
         Frequency Constant:
-        <input type="text" value={frequencyConstant()} onInput={(e) => setFrequencyConstant} />
+        <input type="text" value={frequencyConstant()} onInput={(e) => setFrequencyConstant(e.currentTarget.value)} />
       </label><br />
 
       <button type="submit">Save</button>

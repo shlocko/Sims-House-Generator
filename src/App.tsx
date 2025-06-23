@@ -22,7 +22,7 @@ export const App: Component = () => {
   initMissingRoomConfigs()
   const [showConfig, setShowConfig] = createSignal(false)
 
-  simulateHouseGen(10000, 15)
+  simulateHouseGen(1000, 15)
   return (
     <div class={styles.App}>
       <div>
