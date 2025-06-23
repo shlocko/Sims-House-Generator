@@ -1,16 +1,24 @@
 import { Component, createSignal } from 'solid-js';
-import { setHouseObject } from '../App';
+import { houseObject, setHouseObject } from '../App';
 import { generateHouse } from '../scripts/generateHouse';
+import { setTotalBudget, totalBudget } from './showHouse';
+import { roomNames } from '../scripts/types';
+import { roomConfiguration } from '../scripts/roomConfig';
 
 const ConfigHouse: Component = () => {
   const [num, setNum] = createSignal('');
 
   const handleSubmit = (e: Event) => {
     e.preventDefault();
+    let minRooms = 0
+
+    roomNames.forEach((rn) => {
+      minRooms += roomConfiguration.get(rn)!.minCount
+    })
     let count: number = Number(num())
     if (!count) {
       alert("Not a valid number.")
-    } else if (count < 4) {
+    } else if (count < minRooms) {
       alert("Too few rooms.")
     } else {
       let generatedHouse = generateHouse(count)
@@ -23,6 +31,8 @@ const ConfigHouse: Component = () => {
         return
       }
       setHouseObject(generatedHouse)
+      setTotalBudget(0)
+      houseObject.rooms.forEach((room) => setTotalBudget(totalBudget() + room.budget))
     }
   };
 
