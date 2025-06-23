@@ -4,23 +4,21 @@ import { generateHouse } from '../scripts/generateHouse';
 import { setTotalBudget, totalBudget } from './showHouse';
 import { roomNames } from '../scripts/types';
 import { roomConfiguration } from '../scripts/roomConfig';
+import { makePersisted } from '@solid-primitives/storage';
+import { minRooms } from '../scripts/utils';
 
 const ConfigHouse: Component = () => {
-  const [num, setNum] = createSignal('');
-  const [maxSize, setMaxSize] = createSignal('');
+  const [num, setNum] = makePersisted(createSignal(''), { name: "persistRoomCount" });
+  const [maxSize, setMaxSize] = makePersisted(createSignal(''), { name: "persistedMaxSize" });
 
   const handleSubmit = (e: Event) => {
     e.preventDefault();
-    let minRooms = 0
 
-    roomNames.forEach((rn) => {
-      minRooms += roomConfiguration.get(rn)!.minCount
-    })
     let count: number = Number(num())
     let maxDim: number = Number(maxSize())
     if (!count || !maxDim) {
       alert("Not a valid number.")
-    } else if (count < minRooms) {
+    } else if (count < minRooms()) {
       alert("Too few rooms.")
     } else if (maxDim < 6) {
       alert("Too small maximum dimension.")

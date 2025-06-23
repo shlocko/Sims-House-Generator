@@ -1,4 +1,5 @@
-import { room } from "./types"
+import { roomConfiguration } from "./roomConfig"
+import { room, roomNames } from "./types"
 
 export const randomInt = (min: number, max: number): number => {
 	return Math.floor(Math.random() * (max - min + 1)) + min
@@ -43,4 +44,12 @@ export const roomCount = (rooms: room[], roomName: string): number => {
 	let count = 0
 	rooms.forEach((item) => { if (item.name === roomName) { count += 1 } })
 	return count
+}
+
+export const minRooms = () => {
+	let min = 0
+	roomNames.forEach((rn) => {
+		min += roomConfiguration[rn].minCount
+	})
+	return min
 }

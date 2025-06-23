@@ -14,7 +14,7 @@ export const simulateHouseGen = (simCount: number, roomCount: number) => {
 		roomAppearanceAverage.set(r, 0)
 	}
 	for (let i = 0; i < simCount; i++) {
-		let rooms = generateHouse(roomCount).rooms
+		let rooms = generateHouse(roomCount, 20).rooms
 		for (const r of rooms) {
 			let rc = roomAppearanceCount.get(r.name)!
 			roomAppearanceCount.set(r.name, rc + 1)
