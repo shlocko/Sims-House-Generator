@@ -4,7 +4,7 @@ import { roomName, roomNames } from "./types"
 //
 // Simulates the generation of houses over many iterations to allow for the tuning of generation configuration
 //
-export const simulateHouseGen = (simCount: number, roomCount: number) => {
+export const simulateHouseGen = (simCount: number, roomCount: number): Map<roomName, number> => {
 	const roomAppearanceCount = new Map<roomName, number>();
 	for (const r of roomNames) {
 		roomAppearanceCount.set(r, 0)
@@ -27,5 +27,6 @@ export const simulateHouseGen = (simCount: number, roomCount: number) => {
 		[...roomAppearanceAverage.entries()].sort((a, b) => b[1] - a[1])
 	)
 
-	console.log(sorted)
+	return sorted
+	//console.log(sorted)
 }
