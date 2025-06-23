@@ -19,6 +19,22 @@ export const generateBudget = (min: number, max: number): number => {
 	}
 }
 
+
+export const generateDimension = (min: number, max: number): number => {
+	let slice = randomInt(1, 4)
+	let slice2 = randomInt(1, 4)
+	let quarter = Math.floor((max - min) / 4)
+	if (slice === 1) {
+		if (slice2 < 4) {
+			return randomInt(min, min + quarter)
+		} else {
+			return randomInt(min + (quarter * 3), max)
+		}
+	} else {
+		return randomInt(min + quarter, max - quarter)
+	}
+}
+
 export function randomElement<T>(arr: T[]): T {
 	return arr[Math.floor(Math.random() * arr.length)];
 }

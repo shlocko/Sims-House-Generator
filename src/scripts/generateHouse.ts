@@ -1,7 +1,7 @@
 import { houseObject } from "../App";
 import { roomConfiguration } from "./roomConfig";
 import { house, room, roomName, roomNames } from "./types";
-import { generateBudget, randomElement, randomInt, roomCount } from "./utils";
+import { generateBudget, generateDimension, randomElement, randomInt, roomCount } from "./utils";
 
 export const generateRoom = (rooms: room[], id: number, name?: roomName): room => {
 	let randName: roomName
@@ -17,8 +17,8 @@ export const generateRoom = (rooms: room[], id: number, name?: roomName): room =
 	return {
 		id: id,
 		name: randName,
-		xDim: randomInt(roomConfiguration.get(randName)?.minDim!, roomConfiguration.get(randName)?.maxDim!),
-		yDim: randomInt(roomConfiguration.get(randName)?.minDim!, roomConfiguration.get(randName)?.maxDim!),
+		xDim: generateDimension(roomConfiguration.get(randName)?.minDim!, roomConfiguration.get(randName)?.maxDim!),
+		yDim: generateDimension(roomConfiguration.get(randName)?.minDim!, roomConfiguration.get(randName)?.maxDim!),
 		budget: generateBudget(roomConfiguration.get(randName)?.minBudget!, roomConfiguration.get(randName)?.maxBudget!),
 		completed: false
 	}
