@@ -29,7 +29,7 @@ roomConfiguration.set("kitchen", {
 	maxCount: 999,
 	minBudget: 500,
 	maxBudget: 20000,
-	frequencyConstant: 0.5,
+	frequencyConstant: 0.2,
 });
 
 roomConfiguration.set("living room", {

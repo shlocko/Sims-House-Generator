@@ -3,7 +3,7 @@ import { roomConfiguration } from "./roomConfig";
 import { house, room, roomName, roomNames } from "./types";
 import { generateBudget, generateDimension, randomElement, randomInt, roomCount } from "./utils";
 
-export const generateRoom = (rooms: room[], id: number, name?: roomName): room => {
+export const generateRoom = (rooms: room[], id: number, maxSize: number, name?: roomName): room => {
 	let randName: roomName
 	if (name) {
 		randName = name
@@ -17,14 +17,14 @@ export const generateRoom = (rooms: room[], id: number, name?: roomName): room =
 	return {
 		id: id,
 		name: randName,
-		xDim: generateDimension(roomConfiguration.get(randName)?.minDim!, roomConfiguration.get(randName)?.maxDim!),
-		yDim: generateDimension(roomConfiguration.get(randName)?.minDim!, roomConfiguration.get(randName)?.maxDim!),
+		xDim: generateDimension(roomConfiguration.get(randName)?.minDim!, Math.min(roomConfiguration.get(randName)?.maxDim!, maxSize)),
+		yDim: generateDimension(roomConfiguration.get(randName)?.minDim!, Math.min(roomConfiguration.get(randName)?.maxDim!, maxSize)),
 		budget: generateBudget(roomConfiguration.get(randName)?.minBudget!, roomConfiguration.get(randName)?.maxBudget!),
 		completed: false
 	}
 }
 
-export const generateHouse = (roomCount: number): house => {
+export const generateHouse = (roomCount: number, maxSize: number): house => {
 	let houseObj: house = {
 		rooms: []
 	}
@@ -33,14 +33,14 @@ export const generateHouse = (roomCount: number): house => {
 	roomNames.forEach((rn) => {
 		let count = roomConfiguration.get(rn)!.minCount
 		for (let i = 0; i < count; i++) {
-			houseObj.rooms.push(generateRoom(houseObj.rooms, id, rn))
+			houseObj.rooms.push(generateRoom(houseObj.rooms, id, maxSize, rn))
 			id += 1
 		}
 	})
 
 
 	for (let i = 0; i < roomCount - 4; i++) {
-		houseObj.rooms.push(generateRoom(houseObj.rooms, i + id))
+		houseObj.rooms.push(generateRoom(houseObj.rooms, i + id, maxSize))
 	}
 
 	houseObj.rooms.sort((a, b) => a.name.localeCompare(b.name))

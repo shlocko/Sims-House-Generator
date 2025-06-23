@@ -7,6 +7,7 @@ import { roomConfiguration } from '../scripts/roomConfig';
 
 const ConfigHouse: Component = () => {
   const [num, setNum] = createSignal('');
+  const [maxSize, setMaxSize] = createSignal('');
 
   const handleSubmit = (e: Event) => {
     e.preventDefault();
@@ -16,12 +17,15 @@ const ConfigHouse: Component = () => {
       minRooms += roomConfiguration.get(rn)!.minCount
     })
     let count: number = Number(num())
-    if (!count) {
+    let maxDim: number = Number(maxSize())
+    if (!count || !maxDim) {
       alert("Not a valid number.")
     } else if (count < minRooms) {
       alert("Too few rooms.")
+    } else if (maxDim < 6) {
+      alert("Too small maximum dimension.")
     } else {
-      let generatedHouse = generateHouse(count)
+      let generatedHouse = generateHouse(count, maxDim)
       let size = 0;
       generatedHouse.rooms.forEach((room) => {
         size += room.yDim * room.xDim
@@ -41,9 +45,13 @@ const ConfigHouse: Component = () => {
       <label>
         How many rooms:
         <input type="text" value={num()} onInput={(e) => setNum(e.currentTarget.value)} />
+      </label><br />
+      <label>
+        Maximum room dimension:
+        <input type="text" value={maxSize()} onInput={(e) => setMaxSize(e.currentTarget.value)} />
       </label>
       <button type="submit">Submit</button>
-    </form>
+    </form >
   );
 }
 
