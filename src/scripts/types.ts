@@ -3,10 +3,12 @@ export const roomNames = ['bedroom', 'bathroom', 'kitchen', 'living room', 'hall
 export type roomName = (typeof roomNames)[number]
 
 export type room = {
+	id: number,
 	name: (typeof roomNames)[number],
 	xDim: number,
 	yDim: number,
-	budget: number
+	budget: number,
+	completed: boolean
 }
 
 export type house = {
