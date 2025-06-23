@@ -15,7 +15,7 @@ export const generateRoom = (id: number, name?: roomName) => {
 		name: randName,
 		xDim: randomInt(2, 20),
 		yDim: randomInt(2, 20),
-		budget: generateBudget(500, 40000),
+		budget: generateBudget(500, 20000),
 		completed: false
 	}
 }
