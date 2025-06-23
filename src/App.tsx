@@ -8,7 +8,7 @@ import { makePersisted } from '@solid-primitives/storage';
 import { createStore } from 'solid-js/store';
 import { simulateHouseGen } from './scripts/houseGenSimulator';
 import ConfigGeneration from './components/configGeneration';
-import { initMissingRoomConfigs } from './scripts/roomConfig';
+import { initMissingRoomConfigs, resetConfigToDefault } from './scripts/roomConfig';
 
 export const [houseObject, setHouseObject] = makePersisted(createStore<house>({ rooms: [] }), { name: "persistedHouse" })
 
@@ -35,6 +35,7 @@ export const App: Component = () => {
         <ShowHouse house={houseObject} />
       </Show>
       <Show when={showConfig()}>
+        <button onClick={() => resetConfigToDefault()}> Reset Config to Default </button><br /><br /><br />
         <For each={roomNames}>
           {(rn) => <div>
             <button onClick={() => {

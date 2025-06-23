@@ -138,14 +138,15 @@ const initialRoomConfiguration: Record<roomName, roomConfig> = {
 };
 
 export const initMissingRoomConfigs = () => {
-	console.log(initialRoomConfiguration)
 	Object.entries(initialRoomConfiguration).forEach(([name, conf]) => {
-		console.log(name)
 		if (!(name in roomConfiguration)) {
-			console.log(conf)
 			setRoomConfiguration(name, conf)
 		}
 	});
+}
+
+export const resetConfigToDefault = () => {
+	setRoomConfiguration(initialRoomConfiguration)
 }
 
 // Create a store from the object
